@@ -6,13 +6,6 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      authors: [],
-      title: [],
-      publisher: [],
-      picture: [],
-      link: [],
-      genre: [],
-      information: [] 
     }
   }
 
@@ -24,6 +17,9 @@ class App extends Component {
     return (
       <div className="App">
         <Search />
+        <div className="list">
+        </div>
+        <footer className="footer">Created by <a className="footer-link" href="https://justinpmitchell.github.io/jpm/">Justin Mitchell</a> © 2019</footer>
       </div>
     );
   }
