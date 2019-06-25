@@ -5,6 +5,7 @@ class Search  extends Component {
     super(props)
     this.state = {
       query: '',
+      queryWithPlus: '',
       authors: [],
       title: [],
       publisher: [],
@@ -58,14 +59,6 @@ class Search  extends Component {
 	        (result) => {
 	          if(result.items && startI <= maxStartIndex) {
 	          	for(let i = 0; i < result.items.length; i++) {
-		          console.log(result.items[i].volumeInfo.title);
-		          // author: json.items[i].volumeInfo.authors
-					// title: json.items[i].volumeInfo.title //this can beapc an array
-					// publishing company: json.items[i].volumeInfo.publisher
-					// picture: json.items[i].volumeInfo.imageLinks.thumbnail
-
-					// link: json.items[i].volumeInfo.infoLink
-
 					// genre: json.items[i].volumeInfo.categories // this can be an array
 					// info: json.items[i].volumeInfo.searchInfo.textSnippet
 
@@ -75,17 +68,28 @@ class Search  extends Component {
 
 				  // create title
 		          let titleElement = document.createElement("div");
-		          let titleNode = document.createTextNode(result.items[i].volumeInfo.title);
+		          let titleNode = document.createTextNode("No title available");
+		          if(result.items[i].volumeInfo.title) {
+		          	titleNode = document.createTextNode(result.items[i].volumeInfo.title);
+		          }
 		          titleElement.appendChild(titleNode);
 		          titleElement.className = "title-element";
 		          containerElement.appendChild(titleElement);	
 
 				  // create thumbnail and add link
 				  let thumbnailContainer = document.createElement("a");
-				  thumbnailContainer.href = result.items[i].volumeInfo.infoLink;
+				  thumbnailContainer.href = '';
+				  if(result.items[i].volumeInfo.infoLink) {
+				  	thumbnailContainer.href = result.items[i].volumeInfo.infoLink;
+				  }
 				  thumbnailContainer.className = "thumbnail-container";
 		          let thumbnailElement = document.createElement("img");
-		          thumbnailElement.src = result.items[i].volumeInfo.imageLinks.thumbnail;
+		          thumbnailElement.src = 'https://cdn.pixabay.com/photo/2018/06/26/01/20/connection-lost-3498366_1280.png';
+		          if(result.items[i].volumeInfo.imageLinks) {
+		          	thumbnailElement.src = result.items[i].volumeInfo.imageLinks.thumbnail;
+		          } else {
+		          	thumbnailElement.style.height = '190px';
+		          }
 				  thumbnailContainer.appendChild(thumbnailElement);		          
 		          containerElement.appendChild(thumbnailContainer);
 
@@ -94,13 +98,19 @@ class Search  extends Component {
 				  hoverContainer.className = "hover-container";
 				  // create author
 		          let authorElement = document.createElement("div");
-		          let authorNode = document.createTextNode("by " + result.items[i].volumeInfo.authors);
+		          let authorNode = document.createTextNode("author unknown");
+		          if(result.items[i].volumeInfo.authors) {
+		          	authorNode = document.createTextNode("by " + result.items[i].volumeInfo.authors);
+		          }
 		          authorElement.appendChild(authorNode);
 		          authorElement.className = "author-element";
 		          hoverContainer.appendChild(authorElement);		          	          
 		          // create publisher
 		          let publisherElement = document.createElement("div");
-		          let publisherNode = document.createTextNode("\n Publisher: " + result.items[i].volumeInfo.publisher);
+		          let publisherNode = document.createTextNode("\n Publisher: unknown");
+		          if(result.items[i].volumeInfo.publisher) {
+		          	publisherNode = document.createTextNode("\n Publisher: " + result.items[i].volumeInfo.publisher);
+		          }
 		          publisherElement.appendChild(publisherNode);
 		          publisherElement.className = "publisher-element";
 		          hoverContainer.appendChild(publisherElement);
@@ -120,11 +130,11 @@ class Search  extends Component {
 
 	}
 	searchTenBooks(startI);
-	this.setState({ authors: authors });
   }
 
   handleQueryChange(event) {
-  	this.setState({ query: event.target.value })
+  	let queryWithPlus = event.target.value.replace(/ /g, '+');
+  	this.setState({ query: event.target.value, queryWithPlus: queryWithPlus });
   	if (!event.target.value) {
 		document.getElementsByClassName("search-box")[0].style.background = "";
   	} else {
