@@ -7,7 +7,7 @@ html {
     background-position: center bottom;
 }
 
-.book-container {
+.book {
     width: 300px;
     height: 300px;
     display: inline-block;
@@ -21,7 +21,7 @@ html {
     background-color: white;
     transition: height .25s ease-in-out, width .25s ease-in-out, margin-top .25s ease-in-out, margin-left .25s ease-in-out, margin-right .25s ease-in-out, margin-bottom .25s ease-in-out, outline .25s ease-in-out, box-shadow .25s ease-in-out;
 }
-.thumbnail-container {
+.book-thumbnail-container {
     height: 190px;
     display: block;
     text-align: center;
@@ -30,7 +30,7 @@ html {
     margin: 10px auto;
 }
 
-.hover-container {
+.book-other-information-container {
     display: block;
     width: 260px;
     overflow: hidden;
@@ -47,7 +47,7 @@ html {
     margin-bottom: 10px;
 }
 
-.title-element {
+.book-title {
     text-align: left;
     padding: 5px;
     width: 260px;
@@ -60,13 +60,13 @@ html {
     white-space: nowrap;
 }
 
-.publisher-element {
+.book-publisher {
     max-height: 35px;
     overflow: hidden;
     padding-bottom: 4px;
 }
 
-.author-element {
+.book-author {
     max-height: 15px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -75,7 +75,7 @@ html {
     padding-bottom: 5px;
 }
 
-.book-container:hover {
+.book:hover {
     width: 305px;
     height: 305px;
     transition: height .25s ease-in-out, width .25s ease-in-out, margin-top .25s ease-in-out, margin-left .25s ease-in-out, margin-right .25s ease-in-out, margin-bottom .25s ease-in-out, outline .25s ease-in-out, box-shadow .25s ease-in-out;
