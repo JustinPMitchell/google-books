@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Search from './search/search.js';
+require('dotenv').config();
 
 class App extends Component {
   constructor(props) {
@@ -19,7 +20,7 @@ class App extends Component {
         <Search />
         <div className="list">
         </div>
-        <footer className="footer">Created by <a className="footer-link" href="https://justinpmitchell.github.io/jpm/">Justin Mitchell</a> © 2019</footer>
+        <footer className="footer">Created by <a className="footer-link" target="_blank" href="https://justinpmitchell.github.io/jpm/">Justin Mitchell</a> © 2019</footer>
       </div>
     );
   }
