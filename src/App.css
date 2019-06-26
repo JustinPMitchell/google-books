@@ -1,12 +1,47 @@
 html {
-/*    height: 100vw;
-    width: 100vw;*/
     background: white;
-/*    height: 100%;*/
     background-size: cover;
     background-position: center bottom;
 }
 
+/*title, searchbox*/
+.title {
+    text-align: center;
+    display: inline-block;
+    margin-top: 150px;
+    color: white;
+    text-transform: uppercase;
+    font-family: futura;
+}
+.Search {
+    background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 1)), url(./book.jpg);
+    height: 480px;
+    background-size: cover;
+    text-align: center;
+}
+.search-box-form {
+    text-align: center;  
+}
+.search-box {
+    background: white url('./google_watermark.gif') no-repeat;
+    background-position: left;
+    border: 1px solid #999999;
+    height: 18px;
+    padding: 5px;
+    width: 290px;
+}
+.search-box:focus {
+    outline-color: #fdec00;
+}
+/*end title, searchbox*/
+
+.list {
+    text-align: center;
+    min-height: 800px;
+    margin-bottom: 10px;
+}
+
+/*book*/
 .book {
     width: 300px;
     height: 300px;
@@ -21,32 +56,6 @@ html {
     background-color: white;
     transition: height .25s ease-in-out, width .25s ease-in-out, margin-top .25s ease-in-out, margin-left .25s ease-in-out, margin-right .25s ease-in-out, margin-bottom .25s ease-in-out, outline .25s ease-in-out, box-shadow .25s ease-in-out;
 }
-.book-thumbnail-container {
-    height: 190px;
-    display: block;
-    text-align: center;
-    width: 250px;
-    overflow: hidden;
-    margin: 10px auto;
-}
-
-.book-other-information-container {
-    display: block;
-    width: 260px;
-    overflow: hidden;
-    margin: 0px auto 10px;
-    padding: 5px;
-    text-align: left;
-    max-height: 60px;
-    color: #808080;
-}
-
-.list {
-    text-align: center;
-    min-height: 800px;
-    margin-bottom: 10px;
-}
-
 .book-title {
     text-align: left;
     padding: 5px;
@@ -59,13 +68,24 @@ html {
     text-overflow: ellipsis;
     white-space: nowrap;
 }
-
-.book-publisher {
-    max-height: 35px;
+.book-thumbnail-container {
+    height: 190px;
+    display: block;
+    text-align: center;
+    width: 250px;
     overflow: hidden;
-    padding-bottom: 4px;
+    margin: 10px auto;
 }
-
+.book-other-information-container {
+    display: block;
+    width: 260px;
+    overflow: hidden;
+    margin: 0px auto 10px;
+    padding: 5px;
+    text-align: left;
+    max-height: 60px;
+    color: #808080;
+}
 .book-author {
     max-height: 15px;
     overflow: hidden;
@@ -73,6 +93,11 @@ html {
     white-space: nowrap;
     font-style: italic;
     padding-bottom: 5px;
+}
+.book-publisher {
+    max-height: 35px;
+    overflow: hidden;
+    padding-bottom: 4px;
 }
 
 .book:hover {
@@ -86,39 +111,9 @@ html {
     outline: 1px solid black;
     box-shadow: 3px 3px 2px 0px #808080;
 }
+/*end book*/
 
-.search-box {
-    background: white url('./google_watermark.gif') no-repeat;
-    background-position: left;
-    border: 1px solid #999999;
-    height: 18px;
-    padding: 5px;
-    width: 290px;
-}
-
-.title {
-    text-align: center;
-    display: inline-block;
-    margin-top: 150px;
-    color: white;
-    text-transform: uppercase;
-    font-family: futura;
-}
-
-.search-box-form {
-    text-align: center;  
-}
-
-.search-box:focus {
-    outline-color: #fdec00;
-}
-
-.Search {
-    background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 1)), url(./book.jpg);
-    height: 480px;
-    background-size: cover;
-    text-align: center;
-}
+/*link to google books*/
 .api-link-block {
     display: block;
     text-decoration: unset;
@@ -137,6 +132,9 @@ html {
     font-size: 35px;
     transition: font-size .5s ease-in-out;
 }
+/*end link to google books*/
+
+/*footer*/
 .footer {
   text-align: center;
   background-color: #403f45;
@@ -152,7 +150,4 @@ html {
   font-weight: bold;
   transition: font-weight .25s ease-in-out;
 }
-
-
-
-
+/*end footer*/
