@@ -1,5 +1,5 @@
 html {
-    background: white;
+    background: rgb(255,250,240);;
     background-size: cover;
     background-position: center bottom;
 }
@@ -14,7 +14,7 @@ html {
     font-family: futura;
 }
 .Search {
-    background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 1)), url(./book.jpg);
+    background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 250, 240, 1)), url(./book.jpg);
     height: 480px;
     background-size: cover;
     text-align: center;
@@ -136,18 +136,18 @@ html {
 
 /*footer*/
 .footer {
-  text-align: center;
-  background-color: #403f45;
-  padding: 20px 0px;
-  color: #fdec00;
+    text-align: center;
+    background-color: #403f45;
+    padding: 20px 0px;
+    color: #fdec00;
 }
 .footer-link {
-  text-decoration: none;
-  color: #fdec00;
-  transition: font-weight .25s ease-in-out;
+    text-decoration: none;
+    color: #fdec00;
+    transition: font-weight .25s ease-in-out;
 }
 .footer-link:hover {
-  font-weight: bold;
-  transition: font-weight .25s ease-in-out;
+    font-weight: bold;
+    transition: font-weight .25s ease-in-out;
 }
 /*end footer*/

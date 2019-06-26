@@ -1,68 +1,57 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# [Google-Book-Search-API](https://google-book-search-api.herokuapp.com)
 
-## Available Scripts
+![picture](./src/google_books_api_laptop.png)
+![picture](./src/google_books_api_mobile.png)
 
-In the project directory, you can run:
+Find the books you've been looking for.  With the help of the Google Books API, search for some titles.
 
-### `npm start`
+## Technical Requirements
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+* Create an application that allows you to use the Google Books API to search for books, and deploy it somewhere that we can access through a web browser.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+* This application should allow you to:
+	* Type in a query and display a list of books matching that query.
+	* Each item in the list should include the book's author, title, and publishing company, as well as a picture of the book.
+	* From each list item, you should also be able to navigate to more information about the book, but this information does not necessarily need to appear on a page within your application. In other words, this could link out to an external site with more information about that particular book.
 
-### `npm test`
+## Approach Taken
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* Created a wireframe
+![picture](./src/google_books_api_wireframe.png)
+* Created a Trello Board for tasks to complete
+![picture](./src/google_books_api_trello.png)
+* Began with a react boilerplate
+* Stubbed out coponents
+* Used Postman to correctly find the correct way to query
+![picture](./src/google_books_api_postman.png)
+* Created functions to create book components
+* Updated functionality of api call to be searched as user typed
+* Refined design
+* Deployed to Heroku
 
-### `npm run build`
+## Built With
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* [React](https://github.com/facebook/create-react-app) - Components, Links, .env REACT_APP variables
+* [Node](https://nodejs.org/en) - react, reactdom
+* [Google Books API](https://developers.google.com/books) - API to find books
+* [Heroku](https://www.heroku.com) - deployment
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+## Unsolved Problems
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* There is a limit on the amount of books called, because the google books api restricts the amount of books returned in each call and the amount of calls that can be made per day.
+	* The list could have a feature that shows more if the user requests.
 
-### `npm run eject`
+## Interesting Notes
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+* The search updates as the user types, but will wait for the user to stop typing
+* The API is called recursively because of the restriction on the amount of books returned.  This may make it easier to implement a "show more" button in the future
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Next Steps
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+* Create a "show more" button for the users to see more books on the original querie
+* Create a "favorite" button for the users to keep track of trending books
+* Sort searches by category
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Authors
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+* **Justin Mitchell** - *database management, user information, route handling, RED* - [JustinPMitchell](https://github.com/JustinPMitchell)
