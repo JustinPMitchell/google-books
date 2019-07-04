@@ -5,6 +5,46 @@
 
 Find the books you've been looking for.  With the help of the Google Books API, search for some titles.
 
+## Installing
+
+* Fork this repository and clone into your local directory
+
+```
+git clone git@github.com:JustinPMitchell/google-books.git into a local directory
+```
+
+* Navigate into google-books (or whatever you have renamed this directory)
+
+```
+cd google-books
+```
+
+* Set-up a node package and answer the package installation questions
+
+```
+npm init
+```
+
+* Install NPM dependencies
+
+```
+npm install --save
+```
+
+* Retrieve an API key from [Google Books API](https://developers.google.com/books/docs/v1/using#APIKey)
+
+* Add a .env file with REACT_APP_GOOGLE_BOOKS_API = "my-api-key"
+
+```
+echo REACT_APP_GOOGLE_BOOKS_API = \"my-api-key\" > .env
+```
+
+* Start the program 
+
+```
+npm run start
+```
+
 ## Technical Requirements
 
 * Create an application that allows you to use the Google Books API to search for books, and deploy it somewhere that we can access through a web browser.
