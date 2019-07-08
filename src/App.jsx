@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Search from './search/search.js';
-require('dotenv').config();
+import Search from './search/Search.jsx';
 
 class App extends Component {
   render() {

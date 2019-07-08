@@ -1,16 +1,16 @@
 # [Google-Book-Search-API](https://google-book-search-api.herokuapp.com)
 
-![picture](./src/google_books_api_laptop.png)
-![picture](./src/google_books_api_mobile.png)
-
 Find the books you've been looking for.  With the help of the Google Books API, search for some titles.
+
+![picture](./src/images/images_readme/google_books_api_laptop.png)
+![picture](./src/images/images_readme/google_books_api_mobile.png)
 
 ## Installing
 
 * Fork this repository and clone into your local directory
 
 ```
-git clone git@github.com:JustinPMitchell/google-books.git into a local directory
+git clone git@github.com:JustinPMitchell/google-books.git
 ```
 
 * Navigate into google-books (or whatever you have renamed this directory)
@@ -45,6 +45,12 @@ echo REACT_APP_GOOGLE_BOOKS_API = \"my-api-key\" > .env
 npm run start
 ```
 
+* Test with Jest and ensure that all tests pass
+
+```
+npm test
+```
+
 ## Technical Requirements
 
 * Create an application that allows you to use the Google Books API to search for books, and deploy it somewhere that we can access through a web browser.
@@ -57,13 +63,13 @@ npm run start
 ## Approach Taken
 
 * Created a wireframe
-![picture](./src/google_books_api_wireframe.png)
+![picture](./src/images/images_readme/google_books_api_wireframe.png)
 * Created a Trello Board for tasks to complete
-![picture](./src/google_books_api_trello.png)
+![picture](./src/images/images_readme/google_books_api_trello.png)
 * Began with a react boilerplate
 * Stubbed out coponents
 * Used Postman to correctly find the correct way to query
-![picture](./src/google_books_api_postman.png)
+![picture](./src/images/images_readme/google_books_api_postman.png)
 * Created functions to create book components
 * Updated functionality of api call to be searched as user typed
 * Refined design
@@ -94,4 +100,5 @@ npm run start
 
 ## Authors
 
-* **Justin Mitchell** - *database management, user information, route handling, RED* - [JustinPMitchell](https://github.com/JustinPMitchell)
+* **Justin Mitchell** - *API Management, UI Development, Fullstack Crafting* - [JustinPMitchell](https://github.com/JustinPMitchell)
+* **Katrina Sabbak** - *Code Review*
