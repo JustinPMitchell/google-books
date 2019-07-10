@@ -1,9 +1,9 @@
-import {removeBooks} from '../book/removeBooks.js';
-import {createBooks} from '../book/createBooks.js';
-import {createGoogleLink} from '../book/createGoogleLink.js';
-import {createNoResults} from "../book/createNoResults.js";
+import { removeBooks } from '../book/removeBooks.js';
+import { createBooks } from '../book/createBooks.js';
+import { createGoogleLink } from '../book/createGoogleLink.js';
+import { createNoResults } from "../book/createNoResults.js";
 
-export function searchBooks(event) {
+export async function searchBooks(event) {
   let that = this;
   let list = document.getElementsByClassName("list")[0];
   that.startIndex = 1;
@@ -13,14 +13,13 @@ export function searchBooks(event) {
     event.preventDefault();
   }
 
-  removeBooks(list);
+  await removeBooks(list);
   that.searchNextBooks(list);
 }
 
 export async function searchNextBooks(list) {
   let that = this;
   if (that.startIndex < that.maxStartIndex) {
-
     if (that.startIndex !== 1) {
       createGoogleLink(list);
     }

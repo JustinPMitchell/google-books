@@ -21,7 +21,7 @@ class Search extends Component {
     // the google books api limits the amout of calls to 1000 per day,
     // timeout and timeoutForQuery are used to wait while the user is inputing before searching the api
     this.timeout = null;
-    this.timeoutForQuery = 700;
+    this.timeoutForQuery = 500;
     // the google books api limits the amount of calls to 1000 per day, 
     // startIndex and maxStartIndex prevents too many calls
     this.startIndex = 1;
@@ -35,8 +35,8 @@ class Search extends Component {
     return (
 	  <div className="Search">
 	    <h1 className="title">Book Search</h1>
-	      <form onSubmit={(e) => this.searchBooks(e)} className="search-box-form">
-			<input type="text" name="search" className="search-box" value={this.state.query} onChange={this.handleQueryChange}></input>
+	    <form onSubmit={(e) => this.searchBooks(e)} className="search-box-form">
+			  <input type="text" name="search" className="search-box" value={this.state.query} onChange={this.handleQueryChange}></input>
 		  </form>
 	  </div>
     );

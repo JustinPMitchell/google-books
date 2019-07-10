@@ -1,29 +1,30 @@
-import { mount } from 'enzyme';
-
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import App from './App.jsx';
-import {createTitle, createThumbnail, createAuthor, createPublisher, createOtherInformation, createBooks} from './book/createBooks.js';
-import {searchBooks, searchNextBooks} from './search/searchBooks.js';
-import {removeBooks} from './book/removeBooks.js';
-import {createGoogleLink} from './book/createGoogleLink.js';
-import {createNoResults} from './book/createNoResults.js';
-import {handleQueryChange, removeWatermark} from './search/handleQueryChange.js';
+import { mount } from 'enzyme';
 
+import { createTitle, createThumbnail, createAuthor, createPublisher, createOtherInformation, createBooks } from './book/createBooks.js';
+import { searchBooks, searchNextBooks } from './search/searchBooks.js';
+import { removeBooks } from './book/removeBooks.js';
+import { createGoogleLink } from './book/createGoogleLink.js';
+import { createNoResults } from './book/createNoResults.js';
+import { handleQueryChange, removeWatermark } from './search/handleQueryChange.js';
 import Search from './search/Search.jsx';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
+describe("testRenders", () => {
+  test('renders without crashing', () => {
+    const div = document.createElement('div');
+    ReactDOM.render(<App />, div);
+    ReactDOM.unmountComponentAtNode(div);
+  });
 });
 
-describe("createBooks", () => {
+describe("testCreateBooks", () => {
   let list;
   let testBook;
   let bookOtherInformationContainer;
   let result;
-  let information;
+  let expectedData;
 
   beforeEach(function() {
   	document.body.innerHTML =
@@ -50,60 +51,65 @@ describe("createBooks", () => {
 	  	}
 	  ]
 	}
-    information = result.items[0].volumeInfo;
+    expectedData = result.items[0].volumeInfo;
   });
 
-  describe("createTitle", () => {
+  describe("testCreateTitle", () => {
     test("should create a title and append it to a book", () => {
-	  createTitle(testBook, information.title);
+	  createTitle(testBook, expectedData.title);
 	  list.appendChild(testBook);
 	  let testTitle = document.getElementsByClassName("book-title")[0].textContent;
-	  expect(testTitle).toBe(information.title);
+
+	  expect(testTitle).toBe(expectedData.title);
     });
   });
 
-  describe("createThumbnail", () => {
+  describe("testCreateThumbnail", () => {
   	test("should create a new element for the thumbnail and a link to more information and appends to the book", () => {
-  	  createThumbnail(testBook, information);
+  	  createThumbnail(testBook, expectedData);
   	  list.appendChild(testBook);
   	  let testBookThumbnailContainer = document.getElementsByClassName("book-thumbnail-container")[0];
-  	  expect(testBookThumbnailContainer.href).toBe(information.infoLink);
-  	  expect(testBookThumbnailContainer.firstChild.src).toBe(information.imageLinks.thumbnail);
+
+  	  expect(testBookThumbnailContainer.href).toBe(expectedData.infoLink);
+  	  expect(testBookThumbnailContainer.firstChild.src).toBe(expectedData.imageLinks.thumbnail);
   	})
   });
 
-  describe("createAuthor", () => {
+  describe("testCreateAuthor", () => {
 	test("should create a new element for the author and appends to the OtherInformation", () => {
-	  createAuthor(bookOtherInformationContainer, information);
+	  createAuthor(bookOtherInformationContainer, expectedData);
 	  list.appendChild(bookOtherInformationContainer);
 	  let testAuthor = document.getElementsByClassName("book-author")[0].textContent;
-	  expect(testAuthor).toBe("by " + information.authors);
+
+	  expect(testAuthor).toBe("by " + expectedData.authors);
 	});
   });
 
-  describe("createPublisher", () => {
+  describe("testCreatePublisher", () => {
   	test("should create a new element for the publisher and appends to the OtherInformation", () => {
-  	  createPublisher(bookOtherInformationContainer, information);
+  	  createPublisher(bookOtherInformationContainer, expectedData);
   	  list.appendChild(bookOtherInformationContainer);
   	  let testBookPublisher = document.getElementsByClassName("book-publisher")[0].textContent;
-  	  expect(testBookPublisher).toBe("\n Publisher: " + information.publisher);
+
+  	  expect(testBookPublisher).toBe("\n Publisher: " + expectedData.publisher);
   	})
   });
 
-  describe("createOtherInformation", () => {
+  describe("testCreateOtherInformation", () => {
   	test("should create a new element for other information and appends to the book", () => {
-  	  createOtherInformation(testBook, information);
+  	  createOtherInformation(testBook, expectedData);
   	  list.appendChild(testBook);
   	  let testAuthor = document.getElementsByClassName("book-author")[0].textContent;
   	  let testBookPublisher = document.getElementsByClassName("book-publisher")[0].textContent;
   	  let testBookOtherInformationContainer = document.getElementsByClassName("book-other-information-container")[0];
-	  expect(testAuthor).toBe("by " + information.authors);
-	  expect(testBookPublisher).toBe("\n Publisher: " + information.publisher);
+
+	  expect(testAuthor).toBe("by " + expectedData.authors);
+	  expect(testBookPublisher).toBe("\n Publisher: " + expectedData.publisher);
 	  expect(testBookOtherInformationContainer).toBeDefined();
   	});
   });
 
-  describe("createBooks", () => {
+  describe("testCreateBooks", () => {
   	test("should create books and appends them to the list", () => {
 	  function testCreateBooks() {
 		this.startIndex = 1;
@@ -114,25 +120,24 @@ describe("createBooks", () => {
 
 	  let testCreateBooksCode = new testCreateBooks();
 	  testCreateBooksCode.createBooks(result, list);
-
 	  let testTitle = document.getElementsByClassName("book-title")[0].textContent;
 	  let bookThumbnailContainer = document.getElementsByClassName("book-thumbnail-container")[0];
 	  let testAuthor = document.getElementsByClassName("book-author")[0].textContent;
 	  let testBookPublisher = document.getElementsByClassName("book-publisher")[0].textContent;
 	  let testBookOtherInformationContainer = document.getElementsByClassName("book-other-information-container")[0];
 
-	  expect(testTitle).toBe("Harry Potter and the Chamber of Secrets");
-	  expect(bookThumbnailContainer.href).toBe(information.infoLink);
-  	  expect(bookThumbnailContainer.firstChild.src).toBe(information.imageLinks.thumbnail);
-	  expect(testAuthor).toBe("by " + information.authors);
-	  expect(testBookPublisher).toBe("\n Publisher: " + information.publisher);
+	  expect(testTitle).toBe(expectedData.title);
+	  expect(bookThumbnailContainer.href).toBe(expectedData.infoLink);
+  	  expect(bookThumbnailContainer.firstChild.src).toBe(expectedData.imageLinks.thumbnail);
+	  expect(testAuthor).toBe("by " + expectedData.authors);
+	  expect(testBookPublisher).toBe("\n Publisher: " + expectedData.publisher);
 	  expect(testBookOtherInformationContainer).toBeDefined();
 
   	});
   });
 });
 
-describe("searchBooks", () => {
+describe("testSearchBooks", () => {
   let list;
 
   beforeEach(function() {
@@ -144,10 +149,10 @@ describe("searchBooks", () => {
     list = document.getElementsByClassName("list")[0];
   });
 
-  describe("searchNextBooks", () => {
-    test("should call the google books api, creates books upon success", 
+  describe("testSearchNextBooks", () => {
+    test("should call the google books api, creates books upon success",
       async () => {
-        function testNextSearchBooks() {
+        function testSearchNextBooks() {
 		  this.startIndex = 1;
 		  this.maxStartIndex = 2;
 		  this.state = {};
@@ -155,44 +160,45 @@ describe("searchBooks", () => {
 		  this.createBooks = createBooks.bind(this);
 		  this.searchNextBooks = searchNextBooks.bind(this);
 	    }
-	    let testNextSearchBooksCode = new testNextSearchBooks();
-        await testNextSearchBooksCode.searchNextBooks(list);
-	    let testBook = document.getElementsByClassName("book")[0]; 
-	    expect(testBook).toBeDefined();	
+
+	    let testSearchNextBooksCode = new testSearchNextBooks();
+        await testSearchNextBooksCode.searchNextBooks(list);
+	    let testBook = document.getElementsByClassName("book")[0];
+
+	    expect(testBook).toBeDefined();
       }
     );
   });
 
-  describe("searchBooks", () => {
+  describe("testSearchBooks", () => {
   	test("should start searchNextBooks", async () => {
-	    function testNextSearchBooks() {
-		  this.startIndex = 1;
-		  this.maxStartIndex = 1;
-		  this.state = {};
-		  this.state.queryWithPlus = "Harry+Potter";
-		  this.createBooks = createBooks.bind(this);
-		  this.searchNextBooks = searchNextBooks.bind(this);
-		  this.searchBooks = searchBooks.bind(this);
-		  this.removeBooks = removeBooks.bind(this);
-	    }
+	  function testSearchBooks() {
+		this.startIndex = 1;
+		this.maxStartIndex = 1;
+		this.state = {};
+		this.state.queryWithPlus = "Harry+Potter";
+		this.createBooks = createBooks.bind(this);
+		this.searchNextBooks = searchNextBooks.bind(this);
+		this.searchBooks = searchBooks.bind(this);
+		this.removeBooks = removeBooks.bind(this);
+	  }
 
-	    let testNextSearchBooksCode = new testNextSearchBooks();
-	    testNextSearchBooksCode.searchNextBooks = jest.fn();
-	    testNextSearchBooksCode.removeBooks = jest.fn();
+	  let testSearchBooksCode = new testSearchBooks();
+	  testSearchBooksCode.searchNextBooks = jest.fn();
+	  testSearchBooksCode.removeBooks = jest.fn();
+	  var evt = new MouseEvent('click', {
+		bubbles: true,
+		cancelable: true,
+		view: window
+	  });
+	  await testSearchBooksCode.searchBooks(evt);
 
-		var evt = new MouseEvent('click', {
-			bubbles: true,
-			cancelable: true,
-			view: window
-		});
-
-	    await testNextSearchBooksCode.searchBooks(evt);
-	    expect(testNextSearchBooksCode.searchNextBooks).toHaveBeenCalled();
+	  expect(testSearchBooksCode.searchNextBooks).toHaveBeenCalled();
   	});
   });
 });
 
-describe("createGoogleLink", () => {
+describe("testCreateGoogleLink", () => {
   test("should create a link to google books", () => {
   	document.body.innerHTML =
       '<div>' +
@@ -202,12 +208,13 @@ describe("createGoogleLink", () => {
     let list = document.getElementsByClassName("list")[0];
     createGoogleLink(list);
     let googleLink = document.getElementsByClassName("api-link-block")[0];
+    
     expect(googleLink.textContent).toBe("Find more books here"); 
     expect(googleLink.href).toBe("https://books.google.com/");
   });
 });
 
-describe("createNoResults", () => {
+describe("testCreateNoResults", () => {
   test("should create a no results div and append to the list", () => {
   	document.body.innerHTML =
       '<div>' +
@@ -218,11 +225,12 @@ describe("createNoResults", () => {
     let error = "ERROR: No Results";
     createNoResults(list, error);
     let noResults = document.getElementsByClassName("no-results")[0];
-    expect(noResults.textContent).toBe("Inconclusive search, please try searching again.ERROR: No Results"); 
+
+    expect(noResults.textContent).toBe("Inconclusive search, please try searching again." + error); 
   });
 });
 
-describe("handleQueryChange", () => {
+describe("testHandleQueryChange", () => {
   let list;
   let event;
   let watermarkBackground;
@@ -243,39 +251,39 @@ describe("handleQueryChange", () => {
 	};
   });
 
-  describe("handleQueryChange", () => {
+  describe("testHandleQueryChange", () => {
   	test("should update the query using states to dynamically call the api", () => {
-    	const wrapper = mount(<Search />);
+      const wrapper = mount(<Search />);
 
-	    function testNextSearchBooks() {
-		  this.startIndex = 1;
-		  this.maxStartIndex = 1;
-		  this.timeout = null;
-          this.timeoutForQuery = 700;
-		  this.state = {};
-		  this.state.queryWithPlus = "Harry+Potter";
-		  this.createBooks = createBooks.bind(this);
-		  this.searchNextBooks = searchNextBooks.bind(this);
-		  this.searchBooks = searchBooks.bind(this);
-		  this.removeBooks = removeBooks.bind(this);
-		  this.handleQueryChange = handleQueryChange.bind(this);
-		  this.setState = function() {
-    		wrapper.setState({ query: "Harry Potter" });		  	
-		  };
-	    }
+	  function testHandleQueryChange() {
+		this.startIndex = 1;
+		this.maxStartIndex = 1;
+		this.timeout = null;
+        this.timeoutForQuery = 700;
+		this.state = {};
+		this.state.queryWithPlus = "Harry+Potter";
+		this.createBooks = createBooks.bind(this);
+		this.searchNextBooks = searchNextBooks.bind(this);
+		this.searchBooks = searchBooks.bind(this);
+		this.removeBooks = removeBooks.bind(this);
+		this.handleQueryChange = handleQueryChange.bind(this);
+		this.setState = function() {
+    	  wrapper.setState({ query: "Harry Potter" });		  	
+		};
+	  }
 
-	    let testNextSearchBooksCode = new testNextSearchBooks();
-        testNextSearchBooksCode.handleQueryChange(event);
-        expect(wrapper.state().query).toBe("Harry Potter");
+	  let testHandleQueryChangeCode = new testHandleQueryChange();
+      testHandleQueryChangeCode.handleQueryChange(event);
 
-
+      expect(wrapper.state().query).toBe("Harry Potter");
     });
   });
 
-  describe("removeWatermark", () => {
+  describe("testRemoveWatermark", () => {
     test("should make background of watermark white when the input is not empty", () => {
       removeWatermark(event, watermarkBackground);
+      
       expect(watermarkBackground.style.background).toBe("white");
-    })
+    });
   });
 });
