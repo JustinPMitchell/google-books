@@ -17,9 +17,8 @@ export function searchBooks(event) {
   that.searchNextBooks(list);
 }
 
-export function searchNextBooks(list) {
+export async function searchNextBooks(list) {
   let that = this;
-  console.log("searching for books", that.startIndex, that.maxStartIndex);
   if (that.startIndex < that.maxStartIndex) {
 
     if (that.startIndex !== 1) {
@@ -30,8 +29,8 @@ export function searchNextBooks(list) {
     const googleBooksAPIUrlKey = `key=${process.env.REACT_APP_GOOGLE_BOOKS_API}`;
     const googleBooksAPIUrlQuery = `q=${that.state.queryWithPlus}`;
     const googleBooksAPIUrlMaxResults = `maxResults=40&startIndex=` + that.startIndex;
-    
-  	fetch(googleBooksAPIUrl + googleBooksAPIUrlKey + `&` + googleBooksAPIUrlQuery + `&` + googleBooksAPIUrlMaxResults)
+
+    await fetch(googleBooksAPIUrl + googleBooksAPIUrlKey + `&` + googleBooksAPIUrlQuery + `&` + googleBooksAPIUrlMaxResults)
   	  .then(res => res.json())
   	  .then((result) => {
   	  	that.createBooks(result, list);
